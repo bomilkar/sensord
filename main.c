@@ -171,8 +171,7 @@ int NMEA_message_handler(int sock)
 				}	
 			
 				// Send NMEA string via socket to XCSoar
-                                // send complete sentence including terminating '\0'
-				if ((sock_err = send(sock, s, strlen(s)+1, 0)) < 0)
+				if ((sock_err = send(sock, s, strlen(s), 0)) < 0)
 				{	
 					fprintf(stderr, "send failed\n");
 					break;
@@ -195,8 +194,7 @@ int NMEA_message_handler(int sock)
 				}	
 				
 				// Send NMEA string via socket to XCSoar
-                                // send complete sentence including terminating '\0'
-				if ((sock_err = send(sock, s, strlen(s)+1, 0)) < 0)
+				if ((sock_err = send(sock, s, strlen(s), 0)) < 0)
 				{	
 					fprintf(stderr, "send failed\n");
 					break;
@@ -216,8 +214,7 @@ int NMEA_message_handler(int sock)
 				}	
 				
 				// Send NMEA string via socket to XCSoar
-                                // send complete sentence including terminating '\0'
-				if ((sock_err = send(sock, s, strlen(s)+1, 0)) < 0)
+				if ((sock_err = send(sock, s, strlen(s), 0)) < 0)
 				{	
 					fprintf(stderr, "send failed\n");
 					break;
@@ -306,6 +303,8 @@ void pressure_measurement_handler(void)
 					printf("Exiting ...\n");
 					exit(EXIT_SUCCESS);
 				}
+				static_sensor.p = static_sensor.p * 100; // make it consistent with data log
+				tep_sensor.p = tep_sensor.p * 100; // make it consistent with data log
 			}
 			
 			//
@@ -346,14 +345,20 @@ void pressure_measurement_handler(void)
 			
 			break;
 		case 3:
-			// start temp measurement
-			ms5611_start_temp(&static_sensor);
-			ms5611_start_temp(&tep_sensor);
+			if (io_mode.sensordata_from_file != TRUE)
+			{
+				// start temp measurement unless we get data from file
+				ms5611_start_temp(&static_sensor);
+				ms5611_start_temp(&tep_sensor);
+			}
 			break;
 		case 4:
-			// read temp values
-			ms5611_read_temp(&static_sensor);
-			ms5611_read_temp(&tep_sensor);
+			if (io_mode.sensordata_from_file != TRUE)
+			{
+				// read temp values unless we get data from file
+				ms5611_read_temp(&static_sensor);
+				ms5611_read_temp(&tep_sensor);
+			}
 			break;
 		default:
 			break;

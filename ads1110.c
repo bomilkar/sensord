@@ -43,7 +43,7 @@ int ads1110_open(t_ads1110 *sensor, unsigned char i2c_address)
 	fd = open("/dev/i2c-1", O_RDWR);
 	
 	if (fd < 0) {
-		fprintf(stderr, "Error opening file: %s\n", strerror(errno));
+		fprintf(stderr, "Error opening I2C bus for ads1110: %s\n", strerror(errno));
 		return 1;
 	}
 

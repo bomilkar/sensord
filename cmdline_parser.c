@@ -144,7 +144,7 @@ void cmdline_parser(int argc, char **argv, t_io_mode *io_mode){
 				}
 				
 				io_mode->sensordata_from_file = TRUE;
-				strcpy(sensordata_filename, optarg);
+				strcpy(sensordata_filename, optarg); // sensordata_filename may not be long enough
 				printf("!! REPLAY DATA FROM %s !!\n", sensordata_filename);
 				// Open the fp to replay file
 				fp_sensordata = fopen(sensordata_filename,"r");

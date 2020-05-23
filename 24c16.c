@@ -86,7 +86,7 @@ int eeprom_open(t_24c16 *eeprom, unsigned char i2c_address)
 	fd = open("/dev/i2c-1", O_RDWR);
 	
 	if (fd < 0) {
-		fprintf(stderr, "Error opening file: %s\n", strerror(errno));
+		fprintf(stderr, "Error opening I2C bus for EEPROM: %s\n", strerror(errno));
 		ret_code = 1;
 	}
 

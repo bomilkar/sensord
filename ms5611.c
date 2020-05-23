@@ -52,7 +52,7 @@ int ms5611_open(t_ms5611 *sensor, unsigned char i2c_address)
 	fd = open("/dev/i2c-1", O_RDWR);
 	
 	if (fd < 0) {
-		fprintf(stderr, "Error opening file: %s\n", strerror(errno));
+		fprintf(stderr, "Error opening I2C bus for ms5611: %s\n", strerror(errno));
 		return 1;
 	}
 
