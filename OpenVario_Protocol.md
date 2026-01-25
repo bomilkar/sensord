@@ -55,7 +55,7 @@ The following value pairs are defined at the moment:
 
 ### Vario
 - **E:** TE vario in m/s
-  - Example: `$POV,E,2.15*14`
+  - Example: `$POV,E,2.15*14` 
 
 ### Acceleration
 - **A:** acceleration in m/s²
