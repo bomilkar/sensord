@@ -3,7 +3,7 @@
 This document describes the OpenVario communication protocol. Communication between `sensord` and `variod` and XCSoar is based on NMEA sentences. NMEA is the abbreviation for "National Marine Electronics Association".
 
 **Version:** 1.4  
-**Date:** 14.03.2016 - battery voltage sentence added
+**Date:** 14.03.2016 - battery voltage sentence added  
 **Date:** 20.01.2026 - sentences added for Acceleration and Gyro
 
 The original definition of these sentences can be found here.
